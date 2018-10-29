@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Map from './components/Map';
+import Nav from './components/Nav'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+render() {
+  return (
+    <div className="App">
+      <div className="wrapper">
+        <header className="box header App-header">
+        <h1>Explore awesome things around.</h1>
         </header>
+        <nav className="box navbar">
+          { <Nav /> }
+        </nav>
+        <main className="box content">
+          { <Map /> }
+        </main>
+        <footer className="box footer">
+          <h2>The footer</h2>
+        </footer>
       </div>
+    </div>
     );
   }
 }
 
-export default App;
+export default (App);
