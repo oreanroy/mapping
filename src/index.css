@@ -12,7 +12,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 .navbar{
   grid-area: navbar;
   margin-top: 15px; 
@@ -45,4 +44,22 @@ code {
 .header,
 .footer {
   background-color: #999;
+}
+select{
+  padding: 3px;
+  font-size: .9rem;
+  border-radius: 6px;
+
+}
+
+@media only screen and (max-width: 740px) {
+  .wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 
+    "header header header" 
+    "navbar navbar navbar"
+    "map map map"
+    "footer footer footer"
+  } 
 }
