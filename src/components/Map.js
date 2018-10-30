@@ -6,7 +6,9 @@ import { relative } from "path";
 class Maps extends Component {
     render() {
         const style = {
-            height: "80%"
+            height: "79%",
+            width: "73%",
+            position: "relative",
           }
         return(
             <div className="map">
@@ -15,7 +17,6 @@ class Maps extends Component {
             google = { this.props.google }
             zoom = { 12 }
             initialCenter = {{ lat: 39.6428, lng: -75.71185}}>
-                
             </Map>
             </div>
         )

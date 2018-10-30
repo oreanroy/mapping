@@ -14,7 +14,7 @@ render() {
         <nav className="box navbar">
           { <Nav /> }
         </nav>
-        <main className="box content">
+        <main className="box content map">
           { <Maps /> }
         </main>
         <footer className="box footer">

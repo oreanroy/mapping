@@ -6,11 +6,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+overflow-x: hidden;  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.map {
+  overflow:  hidden !important;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+  
 }
 .navbar{
   grid-area: navbar;
@@ -19,6 +28,9 @@ code {
 .content{
   grid-area: map;
   margin-top: 15px;
+  width: 73vw;
+  height: 80vh;
+  overflow-y: hidden;
 }
 .header{
   grid-area: header;
@@ -32,7 +44,8 @@ code {
   grid-template-areas: 
   "header header header" 
   "navbar map map"
-  "footer footer footer"
+  "footer footer footer";
+  overflow-y: hidden;
 }
 .box {
   background-color: #444;
