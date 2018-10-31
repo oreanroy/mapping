@@ -1,0 +1,40 @@
+{
+    "places": [
+        {
+            "adress": "91, Pocket A, Sukhdev Vihar, Okhla, New Delhi, Delhi 110025, India",
+            "lat": 28.5550853,
+            "lng": 77.2782496,
+            "id":  "ChIJd_9i0fPjDDkRn9yKTtbTG5U"
+        },
+        {
+            "adress": "Sukhdev Vihar, Okhla, New Delhi, Delhi, India",
+            "lat": 28.5583032,
+            "lng": 77.28004609999999,
+            "id":  "ChIJ4wt0efLjDDkRhgQnd2UuOgA"
+        },
+        {
+            "adress": "223, Okhla Industrial Estate Phase 3, New Delhi, Delhi 110020, India",
+            "lat": 28.5482058,
+            "lng": 77.2692335,
+            "id":  "ChIJ5QlVe1nhDDkRWQ83hM-J2v4"
+        },
+        {
+            "adress": "K-185, CV Raman Marg, Sarai Julenna, New Friends Colony, New Delhi, Delhi 110025, India",
+            "lat": 28.5616643,
+            "lng": 77.2704457,
+            "id":  "ChIJ59tzRJPjDDkRnjTZovsE6Jg"
+        },
+        {
+            "adress": "Opposite Escort Hospital, 91 B, CV Raman Marg, Sarai Jullena, New Friends Colony, New Delhi, Delhi 110025, India",
+            "lat": 28.559642,
+            "lng": 77.2729715,
+            "id":  "ChIJ0-H3Mu3jDDkROqg15R58a68"
+        },
+        {
+            "adress": "Yasho Bhawan, MP Rd, New Friends Colony, New Delhi, Delhi 110020, India",
+            "lat": 28.5593555197085,
+            "lng": 77.27449081970852,
+            "id":  "ChIJrwzLqvLjDDkRPjnzXqKUl-0"
+        }
+    ]
+}

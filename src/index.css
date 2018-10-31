@@ -73,6 +73,10 @@ select{
     "header header header" 
     "navbar navbar navbar"
     "map map map"
-    "footer footer footer"
+    "footer footer footer";
+    overflow: hidden;
   } 
+  .content{
+    margin: auto;
+  }
 }
