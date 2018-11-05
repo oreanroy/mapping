@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Maps from './components/Map';
-import Nav from './components/Nav';
+
+//import Nav from './components/Nav';
 
 
 class App extends Component {
@@ -9,18 +10,13 @@ render() {
   return (
     <div className="App">
       <div className="wrapper">
-        <header className="box header App-header">
+        <header className="header App-header">
         <h1>Explore awesome things around.</h1>
+        
         </header>
-        <nav className="box navbar">
-          { <Nav /> }
-        </nav>
-        <main className="box content">
+        <main className="main">
           { <Maps aria-label = "map"/> }
         </main>
-        <footer className="box footer">
-          <h2>The footer</h2>
-        </footer>
       </div>
     </div>
     );
