@@ -4,6 +4,7 @@ import { GoogleApiWrapper, infoWindow, Map, Marker, InfoWindow } from 'google-ma
 // eslint-disable-next-line
 import places from '../data/places.json';
 import Nav from './Nav';
+var markers = [];
 
 class Maps extends Component {
     constructor(props){
@@ -14,10 +15,12 @@ class Maps extends Component {
             allPlaces: places,
             renderPlaces: places.places,
             content: "",
-            name: ""
+            name: "",
+            displayedMarkers: ""
         }
         this.onMarkerClick = this.onMarkerClick.bind(this);
         this.onMapClick = this.onMapClick.bind(this);
+        this.markerAdd = this.markerAdd.bind(this);
     }
 
     changeMarker = (postions) => {
@@ -25,6 +28,7 @@ class Maps extends Component {
             this.setState({renderPlaces: postions})
         }
     }
+    
     onMarkerClick  = (props, marker, e) => {
         console.log(marker)
         this.setState({
@@ -46,6 +50,26 @@ class Maps extends Component {
         }
     }
 
+    clickMarker = (e) =>{
+        for(var i in markers){
+            if(markers[i].key === e){
+              //  console.log(e)
+               //console.log(this.props.markers[i].name);
+              var mark = markers[i];
+              this.openInfowndow(mark);
+            }
+        }
+    }
+
+    openInfowndow(marker){
+        console.log(marker)
+        this.setState({
+            activeMarker: marker,
+            showingInfoWindow: true,
+            name: marker.key,
+            content: ""
+        })
+    }
     
    getInfo = (lat=0, lng=0) => {
        var self = this;
@@ -66,7 +90,22 @@ class Maps extends Component {
         return;
     } 
 
+    markerAdd=(marker ) =>{
+        //console.log("i ran");
+        //console.log(markers);
+       markers.push(marker);
+        return(marker);
+    }
+    setMarkers=() =>{
+        this.setState({displayedMarkers: markers})
+        //console.log(this.state.displayedMarkers)
+        //console.log("i ran");
+    }
+
     render() {
+        markers = [];
+       // console.log(places);
+        //console.log(this.places)
         const infostyle = {
             color: "black"
         }
@@ -77,7 +116,7 @@ class Maps extends Component {
         }
         return(
             <div>
-             {<Nav places={this.state.allPlaces} renderPlaces={this.state.renderPlaces} changeMarker={this.changeMarker} onMarkerClick={this.onMarkerClick}/>} 
+             {<Nav places={this.state.allPlaces} renderPlaces={this.state.renderPlaces} changeMarker={this.changeMarker} markers={markers} clickMarker={this.clickMarker}/>} 
             <Map className=" box content map"
                 style = {style} 
                 google = { this.props.google }
@@ -90,17 +129,22 @@ class Maps extends Component {
                     position = { {lat: 28.558204, lng: 77.275699} }
                     name = { 'South Delhi' }
                 />
-                {this.state.renderPlaces.map((place) => <Marker
-                    id = {place.name}
-                    key = {place.name}
-                    onClick = {this.onMarkerClick} 
-                    title={place.name}
-                    position = {{ lat: place.lat, lng: place.lng }}
-                    lat = {place.lat}
-                    lng = {place.lng}
-                    name = { place.name }
-                />)}
-                {console.log(this.state.activeMarker.content)}
+                {this.state.renderPlaces.map((place) => ( 
+                    this.markerAdd(<Marker
+                   
+                        key = {place.name}
+                        onClick = {this.onMarkerClick} 
+                        title={place.name}
+                        position = {{ lat: place.lat, lng: place.lng }}
+                        lat = {place.lat}
+                        lng = {place.lng}
+                        name = { place.name }
+                        
+                    />)                
+                )
+                )}
+                {this.setMarker}
+            
                 <InfoWindow
                 marker = {this.state.activeMarker}
                 visible = {this.state.showingInfoWindow}>
