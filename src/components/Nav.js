@@ -32,10 +32,10 @@ export default class Nav extends Component {
         }
     }
     itemClick = (e) => {
-        //console.log("i ran");
-     //  console.log(this.props.markers[0]);
+        // console.log("i ran");
+    //   console.log(this.props);
         this.props.clickMarker(e);
-     return;
+    //  return;
     }
 
     render() {
@@ -46,7 +46,7 @@ export default class Nav extends Component {
         var stylenav = {
             width: this.state.navstyle
         }
-        //console.log(this.props)
+        // console.log(this.props.renderPlaces)
         return(
             /*<div>
                 <h3>Explore</h3>
@@ -64,7 +64,7 @@ export default class Nav extends Component {
                 <input className="input" onChange={event=>this.filter(event.target.value)} />
                 <ul>
 
-                {this.props.renderPlaces.map((place) => <li onClick={e=>this.itemClick(place.name)}>{place.name} </li>)}
+                {this.props.renderPlaces.map((place) => <li onClick={(e) => this.itemClick(e)}>{place.name} </li>)}
                 </ul>
             </div>
             <span style={style} onClick={this.openNav}>&#9776; Explore</span>

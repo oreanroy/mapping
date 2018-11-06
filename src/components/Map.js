@@ -13,7 +13,7 @@ class Maps extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             allPlaces: places,
-            renderPlaces: places.places,
+            renderPlaces: places,
             content: "",
             name: "",
             displayedMarkers: ""
@@ -51,12 +51,15 @@ class Maps extends Component {
     }
 
     clickMarker = (e) =>{
+        // console.log(e.target.innerText, markers[i].marker.name)
         for(var i in markers){
-            if(markers[i].key === e){
-              //  console.log(e)
+            if(markers[i].marker.name === e.target.innerText){
+                console.log(e.target.innerText, markers[i].marker.name)
+               console.log(markers[i].marker)
                //console.log(this.props.markers[i].name);
-              var mark = markers[i];
+              var mark = markers[i].marker;
               this.openInfowndow(mark);
+              this.getInfo(mark.lat, mark.lng)
             }
         }
     }
@@ -66,7 +69,7 @@ class Maps extends Component {
         this.setState({
             activeMarker: marker,
             showingInfoWindow: true,
-            name: marker.key,
+            name: marker.key || marker.name,
             content: ""
         })
     }
@@ -103,8 +106,9 @@ class Maps extends Component {
     }
 
     render() {
-        markers = [];
-       // console.log(places);
+        // markers = [];
+        // console.log(this.state.renderPlaces)
+       console.log(markers);
         //console.log(this.places)
         const infostyle = {
             color: "black"
@@ -116,6 +120,7 @@ class Maps extends Component {
         }
         return(
             <div>
+                {console.log(markers)}
              {<Nav places={this.state.allPlaces} renderPlaces={this.state.renderPlaces} changeMarker={this.changeMarker} markers={markers} clickMarker={this.clickMarker}/>} 
             <Map className=" box content map"
                 style = {style} 
@@ -130,8 +135,8 @@ class Maps extends Component {
                     name = { 'South Delhi' }
                 />
                 {this.state.renderPlaces.map((place) => ( 
-                    this.markerAdd(<Marker
-                   
+                    <Marker
+                        ref= {this.markerAdd}
                         key = {place.name}
                         onClick = {this.onMarkerClick} 
                         title={place.name}
@@ -140,7 +145,7 @@ class Maps extends Component {
                         lng = {place.lng}
                         name = { place.name }
                         
-                    />)                
+                    />             
                 )
                 )}
                 {this.setMarker}
