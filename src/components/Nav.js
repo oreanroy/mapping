@@ -12,7 +12,7 @@ export default class Nav extends Component {
     
     openNav = () =>{
         //document.getElementById("Sidenav").style.width = "250px";
-        this.setState({navstyle:  "250px" })
+        this.setState({navstyle:  "300px" })
     }
     
     closeNav = ()  =>{
@@ -31,6 +31,13 @@ export default class Nav extends Component {
             this.props.changeMarker(filtered)
         }
     }
+    itemClick = (e) => {
+        //console.log("i ran");
+     //  console.log(this.props.markers[0]);
+        this.props.clickMarker(e);
+     return;
+    }
+
     render() {
         var style = {
             size: "30px",
@@ -57,7 +64,7 @@ export default class Nav extends Component {
                 <input className="input" onChange={event=>this.filter(event.target.value)} />
                 <ul>
 
-                {this.props.renderPlaces.map((place) => <li onClick = {this.props.onMarkerClick}>{place.name}</li>)}
+                {this.props.renderPlaces.map((place) => <li onClick={e=>this.itemClick(place.name)}>{place.name} </li>)}
                 </ul>
             </div>
             <span style={style} onClick={this.openNav}>&#9776; Explore</span>
