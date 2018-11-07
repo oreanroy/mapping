@@ -131,8 +131,8 @@ class Maps extends Component {
         return(
             <div>
                 {console.log(markers)}
-             {<Nav places={this.state.allPlaces} renderPlaces={this.state.renderPlaces} changeMarker={this.changeMarker} markers={markers} clickMarker={this.clickMarker}/>} 
-            <Map className=" box content map"
+             {<Nav tabindex='-1' places={this.state.allPlaces} renderPlaces={this.state.renderPlaces} changeMarker={this.changeMarker} markers={markers} clickMarker={this.clickMarker}/>} 
+            <Map className=" box content map" role='application'
                 style = {style} 
                 google = { this.props.google }
                 onClick = {this.onMapClick}
