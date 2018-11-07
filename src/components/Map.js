@@ -16,7 +16,9 @@ class Maps extends Component {
             renderPlaces: places,
             content: "",
             name: "",
-            displayedMarkers: ""
+            displayedMarkers: "",
+            verified: "false",
+            rating: ''
         }
         this.onMarkerClick = this.onMarkerClick.bind(this);
         this.onMapClick = this.onMapClick.bind(this);
@@ -28,7 +30,6 @@ class Maps extends Component {
             this.setState({renderPlaces: postions})
         }
     }
-    
     onMarkerClick  = (props, marker, e) => {
         console.log(marker)
         this.setState({
@@ -49,17 +50,17 @@ class Maps extends Component {
             });
         }
     }
-
+    //when list item clicked
     clickMarker = (e) =>{
         // console.log(e.target.innerText, markers[i].marker.name)
         for(var i in markers){
-            if(markers[i].marker.name === e.target.innerText){
-                console.log(e.target.innerText, markers[i].marker.name)
-               console.log(markers[i].marker)
-               //console.log(this.props.markers[i].name);
-              var mark = markers[i].marker;
-              this.openInfowndow(mark);
-              this.getInfo(mark.lat, mark.lng)
+                if(markers[i].marker.name === e.target.innerText){
+                    console.log(e.target.innerText, markers[i].marker.name)
+                   console.log(markers[i].marker)
+                   //console.log(this.props.markers[i].name);
+                  var mark = markers[i].marker;
+                  this.openInfowndow(mark);
+                  this.getInfo(mark.lat, mark.lng)
             }
         }
     }
@@ -79,12 +80,21 @@ class Maps extends Component {
         if(lat !== 0 && lng !== 0){
             var url = "https://api.foursquare.com/v2/venues/search?client_id=EUCEB1GZBXC2ACU5LXD2KMITTU1WDYEKQ43GAZFPBXDWRBHH&client_secret=4AU5ZXC4QTWOKUHU4OK55KFSKKXR2FIQUKU5YMWFNSL4XJJH&v=20180323&limit=1&ll="+lat+","+lng;
             fetch(url).then(function(response){
+                if(response.status === 200){
                 response.json().then(function(data){
                     //console.log(data.response.venues[0].name  )
+                    var venue = data.response.venues[0]; 
                     var name = data.response.venues[0].name
+                    var verified = venue.verified
+                    var rating = venue.rating
                     self.setState({content: name})
+                    verified? self.setState({verified: "yes"}):self.setState({verified: "no"});
+                    rating? self.setState({rating: rating}):self.setState({rating:'un rated place'});
                     return;
-                })
+                })}
+                else{
+                    self.setState({content: "an error occured"})     
+                }
             }).catch(function(error){
                self.setState({content: "no data available or an error occured"})
                return; 
@@ -155,7 +165,9 @@ class Maps extends Component {
                 visible = {this.state.showingInfoWindow}>
                     <div id="content" style = { infostyle }>
                         <h1 id="bodyContent">{this.state.name}</h1>
-                        <h2>{this.state.content}</h2>
+                        <p>name: {this.state.content}</p>
+                        <p>Verified: {this.state.verified}</p>
+                        <p>Rating: {this.state.rating}</p>
                     </div>
                 </InfoWindow>
             </Map>
