@@ -24,10 +24,10 @@ export default class Nav extends Component {
         if(query ===''){
            // this.setState({shown: this.state.places})
            //set the shown to all
-           this.props.changeMarker(this.props.places.places)
+           this.props.changeMarker(this.props.places)
         }
         if(query !=='' && isNaN(query)){
-            filtered = this.props.places.places.filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
+            filtered = this.props.places.filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
             this.props.changeMarker(filtered)
         }
     }
